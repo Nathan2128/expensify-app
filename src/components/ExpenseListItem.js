@@ -1,16 +1,18 @@
-//export a stateless function 
+//export a stateless function
 //description, amount, createdAt
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import moment from "moment";
+import numeral from "numeral";
 
-const ExpenseListItem =  ({ id , description, amount, createdAt}) => (
-    <div> 
+const ExpenseListItem = ({ id, description, amount, createdAt }) => (
+  <div>
     <Link to={`/edit/${id}`}>
-        <p>Description: {description}</p>
+      <p>Description: {description}</p>
     </Link>
-        <p>Amount: {amount}</p>
-        <p>Created at: {createdAt}</p>
-    </div>
+    <p>Amount: {numeral(amount / 100).format("$0,0.00")}</p>
+    <p>Created at: {moment(createdAt).format("MMMM Do, YYYY")}</p>
+  </div>
 );
 
 export default ExpenseListItem;
